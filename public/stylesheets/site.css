@@ -1,0 +1,12 @@
+body, html {
+  margin:0;
+  padding:0;
+  color:#000;
+  background:#ddd;
+}
+
+#container {
+  padding: 2em;
+  margin:0 auto;
+  background:#fff;
+}
