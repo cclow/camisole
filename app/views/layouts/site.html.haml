@@ -1,21 +1,25 @@
 !!!
 %html
   %head
-    %title=@site.title+': '+@page.title
+    %title="#{@site.title}: #{@page.title}"
     =stylesheet_link_tag 'blueprint/screen', :media => "screen, projector"
     =stylesheet_link_tag 'blueprint/print', :media => "print"
     <!--[if lt IE 8]>
     =stylesheet_link_tag 'blueprint/ie', :media => "screen, projector"
     <![endif]-->
+    =stylesheet_link_tag 'blueprint/plugins/fancy-type/screen', :media => "screen, projector"
     =stylesheet_link_tag 'site'
     =yield(:head)
   %body
     #container.span-24
       #banner.span-24.last
-        %h1=@site.title
-        %h2=@site.subtitle
-      #content.span-18
-        %h1.page_title=@page.title
+        %h1.alt=@site.title.upcase
+      #subbanner.span-24.last
+        %h3.alt=@site.subtitle
+      %hr
+      #content.span-17.colborder
+        %h2.page_title.loud=@page.title
         =yield
       #sidebar.span-6.last=@site.sidebar
-      #footer.span-24=@site.footer
+      %hr
+      #footer.quiet.span-24=@site.footer
