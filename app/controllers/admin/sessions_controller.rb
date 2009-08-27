@@ -16,6 +16,9 @@ class Admin::SessionsController < Admin::BaseController
   end
 
   def destroy
+    current_admin_session.destroy
+    flash[:notice] = "Sign out successful."
+    redirect_to admin_sign_in_url
   end
 
 end
