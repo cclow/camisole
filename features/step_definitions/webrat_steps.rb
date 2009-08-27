@@ -27,6 +27,10 @@ When /^I fill in "([^\"]*)" with "([^\"]*)"$/ do |field, value|
   fill_in(field, :with => value) 
 end
 
+When /^I fill in "([^\"]*)" with previous "([^\"]*)" from "([^\"]*)"$/ do |field, attr, key|
+  fill_in(field, :with => @values[key][attr.to_sym])
+end
+
 When /^I fill in "([^\"]*)" for "([^\"]*)"$/ do |value, field|
   fill_in(field, :with => value)
 end
@@ -120,7 +124,7 @@ Then /^I should see "([^\"]*)"$/ do |text|
 end
 
 Then /^I should see \/([^\/]*)\/$/ do |regexp|
-  regexp = Regexp.new(regexp)
+  regexp = Regexp.new(regexp, Regexp::IGNORECASE)
   assert_contain regexp
 end
 
@@ -129,7 +133,7 @@ Then /^I should not see "([^\"]*)"$/ do |text|
 end
 
 Then /^I should not see \/([^\/]*)\/$/ do |regexp|
-  regexp = Regexp.new(regexp)
+  regexp = Regexp.new(regexp, Regexp::IGNORECASE)
   assert_not_contain regexp
 end
 
@@ -140,7 +144,7 @@ end
 Then /^the "([^\"]*)" field should not contain "([^\"]*)"$/ do |field, value|
   assert_no_match(/#{value}/, field_labeled(field).value)
 end
-    
+
 Then /^the "([^\"]*)" checkbox should be checked$/ do |label|
   assert field_labeled(label).checked?
 end

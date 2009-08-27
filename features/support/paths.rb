@@ -12,7 +12,13 @@ module NavigationHelpers
       '/'
 
     when /the page url/
-      "/#{Page.first.slug}"
+      "/#{@values['page'][:slug]}"
+
+    when /the admin sign in page/
+      "/admin/sign_in"
+
+    when /the admin root page/
+      "/admin"
 
     # Add more mappings here.
     # Here is a more fancy example:

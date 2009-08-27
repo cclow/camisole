@@ -1,0 +1,5 @@
+- title "Admin Sign In"
+- semantic_form_for @admin_session, :url => admin_session_path do |f|
+  = f.input :email
+  = f.input :password
+  = f.commit_button "Sign In"
