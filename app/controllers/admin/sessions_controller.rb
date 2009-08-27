@@ -1,4 +1,6 @@
 class Admin::SessionsController < Admin::BaseController
+  skip_before_filter :require_admin, :only => [:new, :create]
+
   def new
     @admin_session = AdminSession.new
   end
@@ -7,7 +9,7 @@ class Admin::SessionsController < Admin::BaseController
     @admin_session = AdminSession.new(params[:admin_session])
     if @admin_session.save
       flash[:notice] = "Sign in successful."
-      redirect_to admin_root_path
+      redirect_back_or_default admin_root_path
     else
       render :action => 'new'
     end
